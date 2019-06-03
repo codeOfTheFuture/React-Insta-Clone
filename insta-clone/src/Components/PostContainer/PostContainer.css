@@ -1,0 +1,36 @@
+.postContainer {
+  max-width: 75%;
+  border: 1px solid lightgray;
+  padding: 2rem !important;
+}
+
+.post {
+  margin: 1rem 0;
+}
+
+.postHeading {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.postHeading .thumbnail {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.postHeading .userName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 1rem;
+}
+
+.likes {
+  text-align: left;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+}
+
+.addComment {
+  margin-top: 2rem;
+}

@@ -5,9 +5,8 @@ import Comment from './Comment';
 const CommentSection = props => {
   return props.comments.map(comment => {
     return (
-      <div>
+      <div className="commentSection">
         <Comment key={comment.id} comment={comment} />
-        <input type="text" placeholder="Add a comment..." />
       </div>
     );
   });

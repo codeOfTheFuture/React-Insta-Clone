@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Navbar } from 'react-bootstrap';
 import dummyData from './dummy-data';
 import SearchBar from './Components/SearchBar/SearchBar';
 import PostContainer from './Components/PostContainer/PostContainer';
@@ -13,13 +14,15 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <h1>Insta Clone</h1>
-        <SearchBar />
+      <Container className="App">
+        <Navbar>
+          <Navbar.Brand>Insta Clone</Navbar.Brand>
+          <SearchBar />
+        </Navbar>
         {this.state.data.map(post => {
           return <PostContainer key={post.id} post={post} />;
         })}
-      </div>
+      </Container>
     );
   }
 }
