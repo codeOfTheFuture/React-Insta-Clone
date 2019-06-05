@@ -1,0 +1,35 @@
+.container {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.form {
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 3rem 0;
+  padding: 2rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.images {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.profilePicture {
+  border-radius: 50%;
+}
+
+.getApp img {
+  width: 100px;
+}
+
+.getApp .microsoft {
+  width: 82px;
+}
