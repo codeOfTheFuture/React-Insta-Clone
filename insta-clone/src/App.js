@@ -43,11 +43,23 @@ class App extends Component {
     console.log(this.state.data);
   };
 
+  filterSearch = search => {
+    const filterData = this.state.data.filter(post => {
+      if (post.username === search) {
+        return post;
+      }
+    });
+
+    this.setState({
+      data: filterData
+    });
+  };
+
   render() {
     return (
       <Container className="App">
         <Navbar>
-          <SearchBar />
+          <SearchBar filterSearch={this.filterSearch} />
         </Navbar>
         {this.state.data.map(post => {
           return (
