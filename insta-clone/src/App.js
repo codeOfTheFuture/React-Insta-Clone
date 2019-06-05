@@ -19,15 +19,44 @@ class App extends Component {
     });
   }
 
+  toggleLike = id => {
+    const updateData = this.state.data.map(post => {
+      if (post.id === id) {
+        if (post.liked === true) {
+          post.likes -= 1;
+          post.liked = false;
+          return post;
+        } else {
+          post.likes += 1;
+          post.liked = true;
+          return post;
+        }
+      } else {
+        return post;
+      }
+    });
+
+    this.setState({
+      data: updateData
+    });
+
+    console.log(this.state.data);
+  };
+
   render() {
     return (
       <Container className="App">
         <Navbar>
-          <Navbar.Brand>Insta Clone</Navbar.Brand>
           <SearchBar />
         </Navbar>
         {this.state.data.map(post => {
-          return <PostContainer key={post.id} post={post} />;
+          return (
+            <PostContainer
+              key={post.id}
+              post={post}
+              toggleLike={this.toggleLike}
+            />
+          );
         })}
       </Container>
     );

@@ -1,13 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import CommentSection from '../CommentSection/CommentSection';
 import { Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 import './PostContainer.css';
-import PropTypes from 'prop-types';
-import CommentSection from '../CommentSection/CommentSection';
 
 const PostContainer = ({
-  post: { username, thumbnailUrl, imageUrl, likes, timestamp, comments }
+  post: {
+    username,
+    thumbnailUrl,
+    imageUrl,
+    likes,
+    liked,
+    timestamp,
+    comments,
+    id
+  },
+  toggleLike: toggleLike
 }) => (
   <Card className="postContainer">
     <div className="post">
@@ -15,9 +25,17 @@ const PostContainer = ({
         <img className="thumbnail" src={`${thumbnailUrl}`} alt="thumbnail" />
         <h2 className="userName">{username}</h2>
       </div>
+
       <img src={`${imageUrl}`} alt="" />
-      <FontAwesomeIcon icon={faHeart} />
-      <FontAwesomeIcon icon={faComment} />
+
+      <FontAwesomeIcon
+        icon={faHeart}
+        onClick={() => toggleLike(id)}
+        className={`like${liked === true ? ' liked' : ''}`}
+      />
+
+      <FontAwesomeIcon icon={faComment} className="comments" />
+
       <div className="likes">{`${likes} likes`}</div>
     </div>
     <div className="timestamp">{timestamp}</div>

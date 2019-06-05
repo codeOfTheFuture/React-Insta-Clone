@@ -34,3 +34,13 @@
 .addComment {
   margin-top: 2rem;
 }
+
+.postContainer .post .like,
+.postContainer .post .comments {
+  font-size: 1.5rem;
+  margin: 1rem 1rem 1rem 0;
+}
+
+.liked {
+  background-color: crimson;
+}
