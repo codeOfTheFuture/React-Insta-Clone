@@ -17,6 +17,10 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
+      login: {
+        username: '',
+        password: ''
+      },
       loggedIn: true
     };
   }
@@ -30,6 +34,12 @@ class Login extends Component {
   toggleLogin = event => {
     event.preventDefault();
 
+    // if (
+    //   this.state.login.username !== 'jeffoliver' ||
+    //   this.state.login.password !== 'password'
+    // ) {
+    //   alert('Username or password incorrect');
+    // } else {
     if (localStorage.getItem('loggedIn')) {
       localStorage.removeItem('loggedIn');
 
@@ -45,6 +55,7 @@ class Login extends Component {
     }
 
     window.location.reload(true);
+    // }
   };
 
   render() {

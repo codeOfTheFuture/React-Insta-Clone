@@ -1,10 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CommentSection from '../CommentSection/CommentSection';
-import { Card } from 'react-bootstrap';
+import Username from '../Styles/Reusables';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 import './PostContainer.css';
+
+const Post = styled.div`
+  max-width: 75%;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 2.5rem;
+  margin: 3rem 0;
+`;
+
+const PostHeader = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
+
+const Thumbnail = styled.img`
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+`;
+
+const PostContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContentImg = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%
+  margin: auto;
+  border-radius: 5px;
+`;
+
+const Icons = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Likes = styled.div`
+  text-align: left;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+`;
 
 const PostContainer = ({
   post: {
@@ -19,28 +67,32 @@ const PostContainer = ({
   },
   toggleLike: toggleLike
 }) => (
-  <Card className="postContainer">
-    <div className="post">
-      <div className="postHeading">
-        <img className="thumbnail" src={`${thumbnailUrl}`} alt="thumbnail" />
-        <h2 className="userName">{username}</h2>
-      </div>
+  <Post>
+    <div>
+      <PostHeader>
+        <Thumbnail src={`${thumbnailUrl}`} alt="thumbnail" />
+        <Username>{username}</Username>
+      </PostHeader>
 
-      <img src={`${imageUrl}`} alt="" />
+      <PostContent>
+        <ContentImg src={`${imageUrl}`} alt="" />
 
-      <FontAwesomeIcon
-        icon={faHeart}
-        onClick={() => toggleLike(id)}
-        className={`like${liked === true ? ' liked' : ''}`}
-      />
+        <Icons>
+          <FontAwesomeIcon
+            icon={faHeart}
+            onClick={() => toggleLike(id)}
+            className={`like${liked === true ? ' liked' : ''}`}
+          />
 
-      <FontAwesomeIcon icon={faComment} className="comments" />
+          <FontAwesomeIcon icon={faComment} className="comments" />
+        </Icons>
 
-      <div className="likes">{`${likes} likes`}</div>
+        <Likes>{`${likes} likes`}</Likes>
+      </PostContent>
+
+      <CommentSection comments={comments} timestamp={timestamp} />
     </div>
-    <div className="timestamp">{timestamp}</div>
-    <CommentSection comments={comments} />
-  </Card>
+  </Post>
 );
 
 PostContainer.propTypes = {

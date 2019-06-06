@@ -1,7 +1,32 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
-import LogoText from '../../img/logo-text.png';
+import styled from 'styled-components';
+import Logo from '../../img/instagram-logo.png';
+import ShowAllPosts from '../../img/showAllPosts.png';
+import ShowAllLiked from '../../img/showAllLiked.png';
+import User from '../../img/user.png';
 import './SearchBar.css';
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 5rem;
+  height: 5rem;
+`;
+
+const HeaderLogo = styled.img`
+  height: 100%;
+  margin-top: 0.8rem;
+`;
+
+const HeaderSearch = styled.input`
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.2rem 2.5rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+`;
 
 class SearchBar extends Component {
   constructor() {
@@ -27,10 +52,10 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <header className="header">
-        <img src={`${LogoText}`} alt="Instagram" className="logoText" />
+      <Header className="header">
+        <HeaderLogo src={`${Logo}`} alt="Logo" />
         <Form onSubmit={this.filterSearch}>
-          <input
+          <HeaderSearch
             onChange={this.handleChanges}
             value={this.state.search}
             name="search"
@@ -39,7 +64,12 @@ class SearchBar extends Component {
             className="search"
           />
         </Form>
-      </header>
+        <div>
+          <img src={`${ShowAllPosts}`} alt="Show All Posts" />
+          <img src={`${ShowAllLiked}`} alt="Show All Liked" />
+          <img src={`${User}`} alt="User" />
+        </div>
+      </Header>
     );
   }
 }

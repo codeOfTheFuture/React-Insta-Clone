@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import CommentForm from './CommentForm';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
@@ -43,6 +44,11 @@ class CommentSection extends Component {
             );
           })}
         </div>
+
+        <div className="timestamp">
+          <Moment fromNow>{`${this.props.timestamp}`}</Moment>
+        </div>
+
         <CommentForm addNewComment={this.addNewComment} />
       </div>
     );

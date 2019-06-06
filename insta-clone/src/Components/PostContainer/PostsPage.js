@@ -57,20 +57,20 @@ class PostsPage extends Component {
 
   render() {
     return (
-      <Container className="App">
-        <Navbar>
-          <SearchBar filterSearch={this.filterSearch} />
-        </Navbar>
-        {this.state.data.map(post => {
-          return (
-            <PostContainer
-              key={post.id}
-              post={post}
-              toggleLike={this.toggleLike}
-            />
-          );
-        })}
-      </Container>
+      <div>
+        <SearchBar filterSearch={this.filterSearch} />
+        <Container className="App">
+          {this.state.data.map(post => {
+            return (
+              <PostContainer
+                key={post.id}
+                post={post}
+                toggleLike={this.toggleLike}
+              />
+            );
+          })}
+        </Container>
+      </div>
     );
   }
 }
