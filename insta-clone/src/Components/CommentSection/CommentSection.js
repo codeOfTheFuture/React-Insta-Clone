@@ -13,10 +13,24 @@ class CommentSection extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      comments: this.props.comments
-    });
+    this.getLocalStorage();
   }
+
+  getLocalStorage = () => {
+    const comments = [...this.props.comments];
+
+    if (!localStorage.getItem('comments')) {
+      this.setState({
+        comments: comments
+      });
+
+      localStorage.setItem('comments', JSON.stringify(comments));
+    } else {
+      this.setState({
+        comments: JSON.parse(localStorage.getItem('comments'))
+      });
+    }
+  };
 
   addNewComment = text => {
     const newComment = {
@@ -26,8 +40,12 @@ class CommentSection extends Component {
     };
 
     this.setState(prevState => {
+      const updatedComments = [...prevState.comments, newComment];
+
+      localStorage.setItem('comments', JSON.stringify(updatedComments));
+
       return {
-        comments: [...prevState.comments, newComment]
+        comments: updatedComments
       };
     });
   };

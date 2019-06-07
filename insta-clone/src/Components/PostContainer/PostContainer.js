@@ -38,7 +38,7 @@ const ContentImg = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%
+  width: 100%;
   margin: auto;
   border-radius: 5px;
 `;

@@ -27,31 +27,35 @@ class Login extends Component {
 
   handleChanges = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      login: {
+        ...this.state.login,
+        [event.target.name]: event.target.value
+      }
     });
   };
 
   toggleLogin = event => {
     event.preventDefault();
 
-    // if (
-    //   this.state.login.username !== 'jeffoliver' ||
-    //   this.state.login.password !== 'password'
-    // ) {
-    //   alert('Username or password incorrect');
-    // } else {
-    if (localStorage.getItem('loggedIn')) {
-      localStorage.removeItem('loggedIn');
+    if (
+      this.state.login.username === 'jeffoliver' &&
+      this.state.login.password === 'password'
+    ) {
+      if (localStorage.getItem('loggedIn')) {
+        localStorage.removeItem('loggedIn');
 
-      this.setState({
-        loggedIn: false
-      });
+        this.setState({
+          loggedIn: false
+        });
+      } else {
+        localStorage.setItem('loggedIn', true);
+
+        this.setState({
+          loggedIn: true
+        });
+      }
     } else {
-      localStorage.setItem('loggedIn', true);
-
-      this.setState({
-        loggedIn: true
-      });
+      alert('Username or password incorrect');
     }
 
     window.location.reload(true);

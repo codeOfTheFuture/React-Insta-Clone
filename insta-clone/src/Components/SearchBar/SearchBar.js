@@ -28,6 +28,10 @@ const HeaderSearch = styled.input`
   border-radius: 5px;
 `;
 
+const HeaderIcon = styled.img`
+  cursor: pointer;
+`;
+
 class SearchBar extends Component {
   constructor() {
     super();
@@ -50,6 +54,12 @@ class SearchBar extends Component {
     });
   };
 
+  signout = () => {
+    localStorage.removeItem('loggedIn');
+
+    window.location.reload(true);
+  };
+
   render() {
     return (
       <Header className="header">
@@ -65,9 +75,13 @@ class SearchBar extends Component {
           />
         </Form>
         <div>
-          <img src={`${ShowAllPosts}`} alt="Show All Posts" />
-          <img src={`${ShowAllLiked}`} alt="Show All Liked" />
-          <img src={`${User}`} alt="User" />
+          <HeaderIcon
+            onClick={this.props.showAllPosts}
+            src={`${ShowAllPosts}`}
+            alt="Show All Posts"
+          />
+          <HeaderIcon src={`${ShowAllLiked}`} alt="Show All Liked" />
+          <HeaderIcon src={`${User}`} alt="User" onClick={this.signout} />
         </div>
       </Header>
     );

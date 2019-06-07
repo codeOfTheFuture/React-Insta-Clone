@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Navbar } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import dummyData from '../../dummy-data';
 import SearchBar from '../SearchBar/SearchBar';
 import PostContainer from '../PostContainer/PostContainer';
@@ -14,10 +14,24 @@ class PostsPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      data: dummyData
-    });
+    this.getLocalStorage();
   }
+
+  getLocalStorage = () => {
+    if (!localStorage.getItem('posts')) {
+      const posts = [...dummyData];
+
+      this.setState({
+        data: posts
+      });
+
+      localStorage.setItem('posts', JSON.stringify(posts));
+    } else {
+      this.setState({
+        data: JSON.parse(localStorage.getItem('posts'))
+      });
+    }
+  };
 
   toggleLike = id => {
     const updateData = this.state.data.map(post => {
@@ -40,6 +54,8 @@ class PostsPage extends Component {
       data: updateData
     });
 
+    localStorage.setItem('posts', JSON.stringify(updateData));
+
     console.log(this.state.data);
   };
 
@@ -53,12 +69,27 @@ class PostsPage extends Component {
     this.setState({
       data: filterData
     });
+
+    localStorage.setItem('posts', JSON.stringify(filterData));
+  };
+
+  showAllPosts = () => {
+    const posts = [...dummyData];
+
+    this.setState({
+      data: posts
+    });
+
+    localStorage.setItem('posts', JSON.stringify(posts));
   };
 
   render() {
     return (
       <div>
-        <SearchBar filterSearch={this.filterSearch} />
+        <SearchBar
+          filterSearch={this.filterSearch}
+          showAllPosts={this.showAllPosts}
+        />
         <Container className="App">
           {this.state.data.map(post => {
             return (
